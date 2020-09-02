@@ -21,3 +21,8 @@ getLogger().info(petInteractionPlugin.getSettings().petsConfig.availableFood);
 
 ## Releases
 This plugin is currently not feature complete, and as a result no download link is available.
+
+## License
+This project is licensed under the GNU General Public License V3 (GPL-3).
+
+A summary of the terms of the license [can be found here.](https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3)
