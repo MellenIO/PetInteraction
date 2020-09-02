@@ -1,0 +1,9 @@
+name: PetInteraction
+version: "1.0.0"
+main: io.mellen.petinteraction.Plugin
+author: Adam Mellen <mellen.io>
+api-version: 1.16
+depend: [ MiniaturePets ]
+commands:
+  ipet:
+    description: Interact with a MiniaturePet
