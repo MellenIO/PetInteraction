@@ -14,6 +14,7 @@
  * */
 package io.mellen.petinteraction;
 
+import com.kirelcodes.miniaturepets.pets.Pet;
 import io.mellen.petinteraction.async.PetEatTask;
 import io.mellen.petinteraction.async.PetParticleTask;
 import io.mellen.petinteraction.lib.config.impl.PluginSettings;
@@ -31,8 +32,8 @@ public class Plugin extends JavaPlugin {
     private PluginSettings settings;
 
     //Async collections since we want to process tasks async wherever possible
-    private ConcurrentLinkedQueue<Entity> pets;
-    private ConcurrentHashMap<Entity, Particle> petParticles;
+    private ConcurrentLinkedQueue<Pet> pets;
+    private ConcurrentHashMap<Pet, Particle> petParticles;
 
     //Async tasks
     private PetEatTask eatTask;
@@ -47,8 +48,8 @@ public class Plugin extends JavaPlugin {
 
         INSTANCE = this;
 
-        pets = new ConcurrentLinkedQueue<Entity>();
-        petParticles = new ConcurrentHashMap<Entity, Particle>();
+        pets = new ConcurrentLinkedQueue<Pet>();
+        petParticles = new ConcurrentHashMap<Pet, Particle>();
 
         //Set a small delay for each task, to make sure that everything available might be loaded in
         eatTask = new PetEatTask(this);
@@ -73,7 +74,7 @@ public class Plugin extends JavaPlugin {
      *
      * @return all pets currently in the world
      */
-    public ConcurrentLinkedQueue<Entity> getPets() {
+    public ConcurrentLinkedQueue<Pet> getPets() {
         return pets;
     }
 
@@ -87,11 +88,11 @@ public class Plugin extends JavaPlugin {
     }
 
     /**
-     * Get available particles for each {@link Entity}
+     * Get available particles for each {@link Pet}
      *
      * @return available particles for each pet currently in the world
      */
-    public ConcurrentHashMap<Entity, Particle> getPetParticles() {
+    public ConcurrentHashMap<Pet, Particle> getPetParticles() {
         return petParticles;
     }
 }

@@ -21,12 +21,12 @@
             <version>1.16.1-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>com.kirelcodes</groupId>
             <artifactId>miniaturepets</artifactId>
-            <version>1.0.0</version>
-            <scope>provided</scope>
-            <systemPath>${project.basedir}/src/main/resources/MiniaturePets.jar</systemPath>
-        </dependency>-->
+            <version>2.4.4-beta</version>
+            <scope>system</scope>
+            <systemPath>H:/MC/farlands-mc/plugins/MiniaturePets.jar</systemPath>
+        </dependency>
     </dependencies>
 </project>

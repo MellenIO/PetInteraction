@@ -14,6 +14,7 @@
  * */
 package io.mellen.petinteraction.async;
 
+import com.kirelcodes.miniaturepets.pets.Pet;
 import io.mellen.petinteraction.Plugin;
 import org.bukkit.Particle;
 import org.bukkit.entity.Entity;
@@ -31,14 +32,15 @@ public class PetParticleTask extends BukkitRunnable {
     }
 
     public void run() {
-        Iterator<Map.Entry<Entity, Particle>> particlesToPlace = context.getPetParticles().entrySet().iterator();
+        Iterator<Map.Entry<Pet, Particle>> particlesToPlace = context.getPetParticles().entrySet().iterator();
         while (particlesToPlace.hasNext()) {
-            Map.Entry<Entity, Particle> availableEffect = particlesToPlace.next();
-            Entity pet = availableEffect.getKey();
-            if (null == pet || pet.isDead()) {
+            Map.Entry<Pet, Particle> availableEffect = particlesToPlace.next();
+            Pet pet = availableEffect.getKey();
+            Entity petEntity = pet.getNavigator();
+            if (null == petEntity || petEntity.isDead()) {
                 particlesToPlace.remove();
             } else {
-                pet.getWorld().spawnParticle(availableEffect.getValue(), pet.getLocation(), 3);
+                petEntity.getWorld().spawnParticle(availableEffect.getValue(), pet.getLocation(), 3);
                 particlesToPlace.remove();
             }
         }

@@ -14,6 +14,7 @@
  * */
 package io.mellen.petinteraction.async;
 
+import com.kirelcodes.miniaturepets.pets.Pet;
 import io.mellen.petinteraction.Plugin;
 import io.mellen.petinteraction.events.PetEatFoodEvent;
 import org.bukkit.Bukkit;
@@ -32,20 +33,22 @@ public class PetEatTask extends BukkitRunnable {
     }
 
     public void run() {
-        Iterator<Entity> petsIterator = context.getPets().iterator();
+        Iterator<Pet> petsIterator = context.getPets().iterator();
         while (petsIterator.hasNext()) {
-            Entity pet = petsIterator.next();
+            Pet pet = petsIterator.next();
+            Entity petEntity = pet.getNavigator();
 
-            if (null == pet || pet.isDead()) {
+            if (null == petEntity || petEntity.isDead()) {
                 petsIterator.remove();
             } else {
-                for (Entity nearEntity : pet.getNearbyEntities(1, 1, 1)) {
+                for (Entity nearEntity : petEntity.getNearbyEntities(1, 1, 1)) {
                     if (nearEntity instanceof Item) {
                         Item droppedItem = (Item) nearEntity;
                         Material droppedItemMaterial = droppedItem.getItemStack().getType();
 
                         //We've found a valid item entity!
                         if (context.getSettings().petsConfig.availableFood.contains(droppedItemMaterial.name())) {
+                            pet.getOwner().sendMessage("Your pet has been fed coggers");
                             droppedItem.remove();
 
                             //Call event for third-third-party plugins

@@ -14,6 +14,7 @@
  * */
 package io.mellen.petinteraction.events;
 
+import com.kirelcodes.miniaturepets.pets.Pet;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Event;
@@ -22,11 +23,11 @@ import org.bukkit.event.HandlerList;
 public class PetEatFoodEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
 
-    private Entity petEntity;
+    private Pet petEntity;
     private Material foodMaterial;
     private int foodQuantity;
 
-    public PetEatFoodEvent(Entity petEntity, Material foodMaterial, int foodQuantity) {
+    public PetEatFoodEvent(Pet petEntity, Material foodMaterial, int foodQuantity) {
         super();
 
         this.petEntity = petEntity;
@@ -34,11 +35,11 @@ public class PetEatFoodEvent extends Event {
         this.foodQuantity = foodQuantity;
     }
 
-    public PetEatFoodEvent(Entity petEntity, Material foodMaterial) {
+    public PetEatFoodEvent(Pet petEntity, Material foodMaterial) {
         this(petEntity, foodMaterial, 1);
     }
 
-    public Entity getPetEntity() {
+    public Pet getPet() {
         return petEntity;
     }
 
